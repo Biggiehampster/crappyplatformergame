@@ -8,9 +8,6 @@ namespace SpriteKind {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.gameOver(true)
 })
-controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
-	
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Mainplayer.isHittingTile(CollisionDirection.Bottom)) {
         Mainplayer.vy = -100
@@ -235,6 +232,66 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     direction = 3
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    animation.runImageAnimation(
+    gameend,
+    [img`
+        . . b b b b . . 
+        . b 5 5 5 5 b . 
+        b 5 d 3 3 d 5 b 
+        b 5 3 5 5 1 5 b 
+        c 5 3 5 5 1 d c 
+        c d d 1 1 d d c 
+        . f d d d d f . 
+        . . f f f f . . 
+        `,img`
+        . . b b b . . . 
+        . b 5 5 5 b . . 
+        b 5 d 3 d 5 b . 
+        b 5 3 5 1 5 b . 
+        c 5 3 5 1 d c . 
+        c 5 d 1 d d c . 
+        . f d d d f . . 
+        . . f f f . . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . b 5 d 1 5 b . 
+        . b 5 3 1 5 b . 
+        . c 5 3 1 d c . 
+        . c 5 1 d d c . 
+        . . f d d f . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . . b 1 1 b . . 
+        . . b 5 5 b . . 
+        . . b d d b . . 
+        . . c d d c . . 
+        . . c 3 3 c . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b . . . 
+        . . b 5 5 b . . 
+        . b 5 1 d 5 b . 
+        . b 5 1 3 5 b . 
+        . c d 1 3 5 c . 
+        . c d d 1 5 c . 
+        . . f d d f . . 
+        . . . f f . . . 
+        `,img`
+        . . . b b b . . 
+        . . b 5 5 5 b . 
+        . b 5 d 3 d 5 b 
+        . b 5 1 5 3 5 b 
+        . c d 1 5 3 5 c 
+        . c d d 1 d 5 c 
+        . . f d d d f . 
+        . . . f f f . . 
+        `],
+    100,
+    false
+    )
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -242,6 +299,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let direction = 0
 let candouble_jump = false
+let gameend: Sprite = null
 let Mainplayer: Sprite = null
 tiles.setCurrentTilemap(tilemap`c0_a0`)
 scene.setBackgroundImage(img`
@@ -384,7 +442,7 @@ Mainplayer = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-let gameend = sprites.create(img`
+gameend = sprites.create(img`
     . . b b b b . . 
     . b 5 5 5 5 b . 
     b 5 d 3 3 d 5 b 
@@ -450,68 +508,6 @@ game.onUpdate(function () {
     if (Mainplayer.isHittingTile(CollisionDirection.Bottom)) {
         candouble_jump = true
     }
-})
-forever(function () {
-    animation.runImageAnimation(
-    gameend,
-    [img`
-        . . b b b b . . 
-        . b 5 5 5 5 b . 
-        b 5 d 3 3 d 5 b 
-        b 5 3 5 5 1 5 b 
-        c 5 3 5 5 1 d c 
-        c d d 1 1 d d c 
-        . f d d d d f . 
-        . . f f f f . . 
-        `,img`
-        . . b b b . . . 
-        . b 5 5 5 b . . 
-        b 5 d 3 d 5 b . 
-        b 5 3 5 1 5 b . 
-        c 5 3 5 1 d c . 
-        c 5 d 1 d d c . 
-        . f d d d f . . 
-        . . f f f . . . 
-        `,img`
-        . . . b b . . . 
-        . . b 5 5 b . . 
-        . b 5 d 1 5 b . 
-        . b 5 3 1 5 b . 
-        . c 5 3 1 d c . 
-        . c 5 1 d d c . 
-        . . f d d f . . 
-        . . . f f . . . 
-        `,img`
-        . . . b b . . . 
-        . . b 5 5 b . . 
-        . . b 1 1 b . . 
-        . . b 5 5 b . . 
-        . . b d d b . . 
-        . . c d d c . . 
-        . . c 3 3 c . . 
-        . . . f f . . . 
-        `,img`
-        . . . b b . . . 
-        . . b 5 5 b . . 
-        . b 5 1 d 5 b . 
-        . b 5 1 3 5 b . 
-        . c d 1 3 5 c . 
-        . c d d 1 5 c . 
-        . . f d d f . . 
-        . . . f f . . . 
-        `,img`
-        . . . b b b . . 
-        . . b 5 5 5 b . 
-        . b 5 d 3 d 5 b 
-        . b 5 1 5 3 5 b 
-        . c d 1 5 3 5 c 
-        . c d d 1 d 5 c 
-        . . f d d d f . 
-        . . . f f f . . 
-        `],
-    500,
-    true
-    )
 })
 game.onUpdateInterval(500, function () {
 	
