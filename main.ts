@@ -5,6 +5,9 @@ namespace SpriteKind {
 /**
  * Remember the fish kills you
  */
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.gameOver(true)
+})
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
 	
 })
