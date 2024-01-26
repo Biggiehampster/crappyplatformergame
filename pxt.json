@@ -11,7 +11,11 @@
         "Sprite Grid": "github:microsoft/arcade-grid#v1.3.0",
         "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.1.0",
-        "editor-extension-sample": "github:riknoll/pxt-arcade-asset-tool#bba1e09e5df247b363270261a21fa6972fd93351"
+        "editor-extension-sample": "github:riknoll/pxt-arcade-asset-tool#bba1e09e5df247b363270261a21fa6972fd93351",
+        "ArcadeMIDI": "github:unsignedarduino/arcademidi#af121437d59fd6b2cec54501ac437db1eaa766f5",
+        "sound effects": "github:klausw3/pxt-sound-effects#v1.2.0",
+        "darts": "*",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0"
     },
     "files": [
         "main.blocks",
